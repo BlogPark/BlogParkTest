@@ -1,0 +1,118 @@
+﻿@{
+    Layout = null;
+}
+@model BlogParkTestPro.WebUI.Models.UserModels
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style type="text/css">
+        body {
+            background-color: #F2F2F2;
+        }
+
+        a:link {
+            color: #002C99;
+            font-size: 12px;
+            font-weight: lighter;
+            font-family: "宋体";
+        }
+
+        a:visited {
+            color: #002C99;
+            font-size: 12px;
+            font-weight: lighter;
+            font-family: "宋体";
+        }
+
+        a:hover {
+            color: #C06;
+            font-size: 12px;
+            font-weight: lighter;
+            font-family: "宋体";
+        }
+
+        a:active {
+            color: #002C99;
+            font-size: 12px;
+            font-weight: lighter;
+            font-family: "宋体";
+        }
+
+        #div1 {
+            margin-right: auto;
+            margin-left: auto;
+            height: 350px;
+            width: 400px;
+            background-color: #FFFFFF;
+            margin-top: 50px;
+            border: 1px #BBBBBB solid;
+        }
+
+        #div2 {
+            color:rgb(153,0,68);
+            font-size: 20px;
+            font-weight: 900;
+            padding-top: 9px;
+            padding-left: 50px;
+        }
+
+        .lei1 {
+            color: #990044;
+        }
+
+        .lei2 {
+            color: #999999;
+            font-size: 12px;
+        }
+
+        .lei3 {
+            color: #000;
+            font-size: 13px;
+        }
+    </style>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/knockout-2.2.0.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            登录到博客园&nbsp;&nbsp;<a href="#" target="_blank">立即注册</a><br />
+            <form method="post" id="form1" name="form1">
+                <p class="lei2">
+                    用户名<br />
+                    <input style=" font-size:medium;"size="25px" type="text" name="username" id="username" data-bind="value:user" />&nbsp;<a href="#">找回用户名</a><br />
+                    @Html.ValidationMessageFor(m => m.username)<br />
+                </p>
+                <p class="lei2">
+                    密码<br />
+                    <input style=" font-size:medium" size="25px;" type="password" name="password" id="password" data-bind="value:pwd"/>&nbsp;<a href="#">重置密码</a><br />
+                    @Html.ValidationMessageFor(m => m.password)<br />
+                </p>
+                <p class="lei2"> @Html.CheckBoxFor(m => m.isnextautologin) 下次自动登录<br /></p>
+                <input style="font-size:large; font-family:Verdana; color:rgb(153,0,68); width:100px"  type="submit" value="登  录" name="submit" />&nbsp;&nbsp;&nbsp;<a href="#">返回</a>
+                <p>
+                    <span style="font-size: 9px">&gt;&gt;</span><a href="#">立即注册</a><br />
+                    <span style="font-size: 9px">&gt;&gt;</span><a href="#">联系我们</a><br />
+                    <span style="font-size: 9px">&gt;&gt;</span><a href="#">网站首页</a><br />
+                </p>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var viewmodel = {
+        user: ko.observable("@Model.username"),
+        pwd: ko.observable("@Model.password")
+    };
+        ko.applyBindings(viewmodel);
+  
+    </script>
+
+</body>
+</html>

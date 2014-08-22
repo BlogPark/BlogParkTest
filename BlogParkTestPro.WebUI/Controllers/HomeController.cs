@@ -15,7 +15,6 @@ namespace BlogParkTestPro.WebUI.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "";
-
             return View();
         }
 

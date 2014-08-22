@@ -265,6 +265,7 @@
     <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="SQL\AddMemberInfoField.sql" />
+    <Content Include="SQL\LogCategory.sql" />
     <Content Include="SQL\Member.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

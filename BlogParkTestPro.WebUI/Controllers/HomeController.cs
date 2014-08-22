@@ -38,12 +38,21 @@ namespace BlogParkTestPro.WebUI.Controllers
         /// <returns></returns>
         public ActionResult Login()
         {
-            UserModels model = new UserModels { username = "赵玉珍", password = "1234" };
+            UserModels model = new UserModels();
+            if (Request.Cookies["lastVisit"] != null)
+                model.username = Request.Cookies["lastVisit"].Value.ToString();
             return View(model);
         }
         [HttpPost]
         public ActionResult Login(UserModels model)
         {
+            if (model.isnextautologin)
+            {
+                HttpCookie aCookie = new HttpCookie("lastVisit");
+                aCookie.Value = model.username;
+                aCookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(aCookie);
+            }
             MemberInfo memberinfo = new MemberInfo();
             memberinfo.MemberName = model.username;
             memberinfo.LoginPassword = model.password;
@@ -53,7 +62,7 @@ namespace BlogParkTestPro.WebUI.Controllers
             else
             {
                 model.password = "";
-                return View(model); 
+                return View(model);
             }
         }
         protected override void HandleUnknownAction(string actionName)

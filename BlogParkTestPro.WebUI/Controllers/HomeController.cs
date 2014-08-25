@@ -52,17 +52,69 @@ namespace BlogParkTestPro.WebUI.Controllers
                 aCookie.Expires = DateTime.Now.AddDays(1);
                 Response.Cookies.Add(aCookie);
             }
+            else
+            {
+                HttpCookie aCookie = new HttpCookie("lastVisit");
+                aCookie.Value = "";
+                aCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(aCookie);
+            }
             MemberInfo memberinfo = new MemberInfo();
             memberinfo.MemberName = model.username;
             memberinfo.LoginPassword = model.password;
-            bool ischeck = memberbll.CheckMemberCanLogin(memberinfo);
-            if (ischeck)
+            MemberInfo ischeck = memberbll.CheckMemberCanLogin(memberinfo);
+            if (ischeck != null)
+            {
+                System.Web.HttpContext.Current.Session["loguser"] = ischeck;
+                HttpCookie aCookie = new HttpCookie("loginid");
+                aCookie.Value = ischeck.MemberID.ToString();
+                aCookie.Expires = DateTime.Now.AddHours(1);
+                HttpCookie bCookie = new HttpCookie("loginuser");
+                bCookie.Value = HttpUtility.UrlEncode( ischeck.Nickname.ToString());
+                bCookie.Expires = DateTime.Now.AddMinutes(1);
+                Response.Cookies.Add(aCookie);
+                Response.Cookies.Add(bCookie);
                 return RedirectToAction("Index");
+            }
             else
             {
                 model.password = "";
                 return View(model);
             }
+        }
+        /// <summary>
+        /// 注册页
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RegistrationPage()
+        {
+            UserModels model = new UserModels();
+            return View(model);
+        }
+        /// <summary>
+        /// 注册页
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult RegistrationPage(UserModels model)
+        {
+            if (ModelState.IsValid)
+            {
+                MemberInfo usermodel = new MemberInfo();
+                usermodel.MemberName = model.username;
+                usermodel.MemberEmail = model.email;
+                usermodel.LoginPassword = model.confirmpassword;
+                usermodel.Nickname = model.nickname;
+                if (memberbll.InsertMemberUserforRegistration(usermodel))
+                    return RedirectToAction("Index");
+                else
+                {
+                    ModelState.AddModelError("username", "注册失败");
+                    return View(model);
+                }
+            }
+            else
+                return View(model);
         }
         protected override void HandleUnknownAction(string actionName)
         {

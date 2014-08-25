@@ -20,9 +20,13 @@ namespace BlogParkTestPro.DAL
         /// </summary>
         /// <param name="membermodel"></param>
         /// <returns></returns>
-        public bool GetMemberUserforLogin(MemberInfo membermodel)
+        public MemberInfo GetMemberUserforLogin(MemberInfo membermodel)
         {
-            string sqltxt = @"SELECT  1
+            string sqltxt = @"SELECT  MemberID ,
+        MemberName ,
+        MemberEmail ,
+        MemberState ,
+        LoginPassword,Nickname
 FROM    BlogPark.dbo.MemberInfo WITH ( NOLOCK )
 WHERE MemberName=@membername AND LoginPassword=@password AND MemberState=1";
             SqlParameter[] paramter = { new SqlParameter("@membername",SqlDbType.NVarChar),
@@ -30,11 +34,58 @@ WHERE MemberName=@membername AND LoginPassword=@password AND MemberState=1";
                                       };
             paramter[0].Value = membermodel.MemberName;
             paramter[1].Value = membermodel.LoginPassword;
-            object obj = help.GetSingle(sqltxt, paramter);
-            if (obj == null)
-                return false;
+           DataTable membertable = help.Query(sqltxt, paramter).Tables[0];
+           if (membertable.Rows.Count == 0)
+               return null;
+           else
+           {
+               MemberInfo m = new MemberInfo();
+               m.MemberName = membertable.Rows[0]["MemberName"].ToString();
+               m.MemberID = int.Parse(membertable.Rows[0]["MemberID"].ToString());
+               m.MemberEmail = membertable.Rows[0]["MemberEmail"].ToString();
+               m.LoginPassword = membertable.Rows[0]["LoginPassword"].ToString();
+               m.MemberState = int.Parse(membertable.Rows[0]["MemberState"].ToString());
+               m.Nickname = membertable.Rows[0]["Nickname"].ToString();
+               return m;
+           }
+        }
+        /// <summary>
+        /// 注册新会员
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool InsertMemberUserforRegistration(MemberInfo model)
+        {
+            bool issuccessful=true;
+            string sqltxt = @"INSERT INTO BlogPark.dbo.MemberInfo
+        ( MemberName ,
+          Nickname ,
+          LoginPassword ,
+          MemberEmail ,
+          MemberState
+        )
+VALUES  (
+          @MemberName ,
+          @Nickname ,
+          @LoginPassword ,
+          @MemberEmail ,
+          1
+        )";
+            SqlParameter[] paramter = { new SqlParameter("@MemberName",SqlDbType.NVarChar),
+                                          new SqlParameter("@Nickname",SqlDbType.NVarChar),
+                                          new SqlParameter("@LoginPassword",SqlDbType.NVarChar),
+                                          new SqlParameter("@MemberEmail",SqlDbType.NVarChar)
+                                      };
+            paramter[0].Value = model.MemberName;
+            paramter[1].Value = model.Nickname;
+            paramter[2].Value = model.LoginPassword;
+            paramter[3].Value = model.MemberEmail;
+            int k = help.ExecuteSql(sqltxt,paramter);
+            if (k > 0)
+                issuccessful = true;
             else
-                return true;
+                issuccessful = false;
+            return issuccessful;
         }
     }
 }

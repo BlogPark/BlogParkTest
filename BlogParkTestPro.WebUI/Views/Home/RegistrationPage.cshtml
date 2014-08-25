@@ -1,0 +1,20 @@
+﻿@model BlogParkTestPro.WebUI.Models.UserModels
+<html>
+<head>
+    <title>注册进入博客园</title>
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <form method="post">
+        邮箱：<input type="email" name="email" />@Html.ValidationMessageFor(m => m.email)<br />
+        登陆用户名：<input type="text" name="username" />@Html.ValidationMessageFor(m=>m.username)<br />
+        显示名：<input type="text" name="nickname" />@Html.ValidationMessageFor(m=>m.nickname)<br />
+        密码：<input type="password" name="password" />@Html.ValidationMessageFor(m=>m.password)<br />
+        确认密码：<input type="password" name="confirmpassword">@Html.ValidationMessageFor(m=>m.confirmpassword)<br />
+        <input type="submit" value="提 交" />
+    </form>
+</body>
+
+</html>

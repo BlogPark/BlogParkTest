@@ -15,9 +15,18 @@ namespace BlogParkTestPro.BLL
     public class MemberSimpleOperationBLL
     {
         MemberSimpleOperation dal = new MemberSimpleOperation();
-        public bool CheckMemberCanLogin(MemberInfo model)
+        public MemberInfo CheckMemberCanLogin(MemberInfo model)
         {
             return dal.GetMemberUserforLogin(model);
+        }
+        /// <summary>
+        /// 注册新会员
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool InsertMemberUserforRegistration(MemberInfo model)
+        {
+            return dal.InsertMemberUserforRegistration(model);
         }
     }
 }

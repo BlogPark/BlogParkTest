@@ -17,9 +17,14 @@ namespace BlogParkTestPro.WebUI.Controllers
         {
             return View();
         }
-        public ActionResult CategoryList4()
+        public ActionResult CategoryList()
         {
             List<LogCategory> models = bll.GetMinCategory();
+            return PartialView("_CategoryList", models);
+        }
+        public ActionResult GetSubCategoryList(int id)
+        {
+            List<LogCategory> models = bll.GetSubCategory(id);
             return PartialView("_CategoryList", models);
         }
     }

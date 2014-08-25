@@ -93,6 +93,8 @@ namespace BlogParkTestPro.Model
         /// </summary>
         [DataMember]
         public string PhoneNumber { get; set; }
+        [DataMember]
+        public int MemberState { get; set; }
 
     }
 }

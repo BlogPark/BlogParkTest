@@ -15,7 +15,12 @@ namespace BlogParkTestPro.WebUI.Models
         [Required(ErrorMessage="请再次确认密码")]
         [Compare("password",ErrorMessage="两次输入密码不一致")]
         public string confirmpassword { get; set; }
+        [Required(ErrorMessage="邮箱必填")]
+        [EmailAddressAttribute(ErrorMessage="邮箱地址不正确")]
         public string email { get; set; }
         public bool isnextautologin { get; set; }
+        [Required(ErrorMessage="请输入昵称")]
+        [StringLength(20,MinimumLength=5,ErrorMessage="昵称必须大于五个字符")]
+        public string nickname { get; set; }
     }
 }

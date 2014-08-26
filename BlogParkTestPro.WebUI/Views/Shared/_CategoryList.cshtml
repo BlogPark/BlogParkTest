@@ -3,34 +3,23 @@
 @{
     Layout = null;
 }
-<ol>
-    @if (Model != null)
-    {
-        foreach (var item in Model)
-        {
-            <li><a href="#">@item.CategoryName</a></li>
-        }
-    }
-</ol>
-
-
-
 <div id="cate_title_block">
     <div id="cate_title_title">
         <ul id="cate_item">
-            <li id="cate_item_108698" class="" onmouseout="cateHidden(108698)" onmouseover="cateShow(108698)">
-                <a href="/cate/108698/">.NET技术(11)</a>
-            </li>
-            <li id="cate_item_2" class="" onmouseout="cateHidden(2)" onmouseover="cateShow(2)">
-            <li id="cate_item_108701" class="" onmouseout="cateHidden(108701)" onmouseover="cateShow(108701)">
-            <li id="cate_item_108703" class="" onmouseout="cateHidden(108703)" onmouseover="cateShow(108703)">
-            <li id="cate_item_108704" class="" onmouseout="cateHidden(108704)" onmouseover="cateShow(108704)">
-            <li id="cate_item_108705" class="" onmouseout="cateHidden(108705)" onmouseover="cateShow(108705)">
-            <li id="cate_item_108709" class="" onmouseout="cateHidden(108709)" onmouseover="cateShow(108709)">
-            <li id="cate_item_108712" onmouseout="cateHidden(108712)" onmouseover="cateShow(108712)">
-            <li id="cate_item_108724" onmouseout="cateHidden(108724)" onmouseover="cateShow(108724)">
-            <li id="cate_item_4" onmouseout="cateHidden(4)" onmouseover="cateShow(4)">
-            <li id="cate_item_0" onmouseout="cateHidden(0)" onmouseover="cateShow(0)">
-            <li id="cate_item_-1" onmouseout="cateHidden(-1)" onmouseover="cateShow(-1)">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    string idstr = "cate_item_" + item.CategoryID.ToString();
+                    string over = "cateShow(" + item.CategoryID.ToString() + ")";
+                    string hidden = "cateHidden(" + item.CategoryID.ToString() + ")";
+                    <li id="@idstr" onmouseover="@over" onmouseout="@hidden"><a href="#">@item.CategoryName</a></li>
+                }
+            }
         </ul>
         <div class="cate_bottom"></div>
+    </div>
+</div>
+
+
+

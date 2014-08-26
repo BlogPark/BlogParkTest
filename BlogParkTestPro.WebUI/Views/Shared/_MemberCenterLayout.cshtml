@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/aggsite.js"></script>
+    <link href="~/CSS/aggsite.css" rel="stylesheet" />
     <title>@ViewBag.Title - 我的 ASP.NET MVC 应用程序</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
@@ -20,10 +22,7 @@
                     @HttpUtility.UrlDecode(Request.Cookies["loginuser"].Value)
                 }
             </div>
-            <div class="float-right">
-                <section id="login">
-                    @Html.Action("GetSubCategoryList", "Category", new { id = 100 })
-                </section>
+            <div class="float-right">               
                 <nav>
                     <ul id="menu">
                         <li>@Html.ActionLink("主页", "Index", "Home")</li>
@@ -41,6 +40,11 @@
     </div>
 </header>
 <div id="body">
+    <div style="float:left; width:150px">
+        <section id="login">
+            @Html.Action("GetSubCategoryList", "Category", new { id = 100 })
+        </section>
+    </div>
     @RenderSection("featured", required: false)
     <section class="content-wrapper main-content clear-fix">
         @RenderBody()

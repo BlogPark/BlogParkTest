@@ -191,14 +191,6 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\Config.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\ConfigHandler.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\CrawlerHandler.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\Handler.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\ListFileHandler.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\NotSupportedHandler.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\PathFormater.cs" />
-    <Compile Include="ueditor1_4_3-utf8-net\net\App_Code\UploadHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -440,10 +432,6 @@
     <Content Include="ueditor1_4_3-utf8-net\lang\zh-cn\images\music.png" />
     <Content Include="ueditor1_4_3-utf8-net\lang\zh-cn\images\upload.png" />
     <Content Include="ueditor1_4_3-utf8-net\lang\zh-cn\zh-cn.js" />
-    <Content Include="ueditor1_4_3-utf8-net\net\Bin\Newtonsoft.Json.dll" />
-    <Content Include="ueditor1_4_3-utf8-net\net\Bin\Newtonsoft.Json.pdb" />
-    <Content Include="ueditor1_4_3-utf8-net\net\Bin\Newtonsoft.Json.xml" />
-    <Content Include="ueditor1_4_3-utf8-net\net\net.sln" />
     <Content Include="ueditor1_4_3-utf8-net\themes\default\css\ueditor.css" />
     <Content Include="ueditor1_4_3-utf8-net\themes\default\css\ueditor.min.css" />
     <Content Include="ueditor1_4_3-utf8-net\themes\default\dialogbase.css" />
@@ -591,10 +579,6 @@
     <Content Include="Views\Shared\_MemberCenterLayout.cshtml" />
     <Content Include="Views\Shared\_CategoryList.cshtml" />
     <Content Include="Views\Home\RegistrationPage.cshtml" />
-    <Content Include="ueditor1_4_3-utf8-net\net\config.json" />
-    <Content Include="ueditor1_4_3-utf8-net\net\controller.ashx" />
-    <Content Include="ueditor1_4_3-utf8-net\net\README.md" />
-    <Content Include="ueditor1_4_3-utf8-net\net\Web.config" />
     <Content Include="ueditor1_4_3-utf8-net\third-party\jquery-1.10.2.min.map" />
     <Content Include="ueditor1_4_3-utf8-net\third-party\video-js\font\vjs.eot" />
     <Content Include="ueditor1_4_3-utf8-net\third-party\video-js\font\vjs.ttf" />

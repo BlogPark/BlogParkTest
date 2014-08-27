@@ -16,7 +16,7 @@ namespace BlogParkTestPro.WebUI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "RegistrationPage", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "AddBlogArtcle", id = UrlParameter.Optional }
             );
         }
     }

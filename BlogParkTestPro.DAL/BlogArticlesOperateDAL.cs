@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using BlogParkTestPro.Model;
+
+namespace BlogParkTestPro.DAL
+{
+    public class BlogArticlesOperateDAL
+    {
+        DbHelperSQL help = new DbHelperSQL();
+        /// <summary>
+        /// 插入博文
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool InsertBlogArticle(BlogArticles model)
+        {
+            string sqltxt = @"INSERT INTO BlogPark.dbo.BlogArticles
+        ( Title ,
+          CreaterID ,
+          CreaterName ,
+          ArticleTags ,
+          UserCategoryID ,
+          BlogContent ,
+          CreateTime ,
+          BrowseCount ,
+          ReviewCount ,
+          RecommendCount ,
+          OppositionCount ,
+          Statenum ,
+          LastUpdateTime
+        )
+VALUES  ( @Title,
+          @CreaterID,
+          @CreaterName,
+          @ArticleTags,
+          @UserCategoryID,
+          @BlogContent,
+          GETDATE(),
+          0 ,
+          0 ,
+          0 , 
+          0 ,
+          10 ,
+          GETDATE()
+        )";
+            SqlParameter[] paramter = { 
+                                          new SqlParameter("@Title",SqlDbType.NVarChar),
+                                          new SqlParameter("@CreaterID",SqlDbType.Int),
+                                          new SqlParameter("@CreaterName",SqlDbType.NVarChar),
+                                          new SqlParameter("@ArticleTags",SqlDbType.NVarChar),
+                                          new SqlParameter("@UserCategoryID",SqlDbType.Int),
+                                          new SqlParameter("@BlogContent",SqlDbType.Text)
+                                      };
+            paramter[0].Value = model.Title;
+            paramter[1].Value = model.CreaterID;
+            paramter[2].Value = model.CreaterName;
+            paramter[3].Value = model.ArticleTags;
+            paramter[4].Value = model.UserCategoryID;
+            paramter[5].Value = model.BlogContent;
+            int k = help.ExecuteSql(sqltxt, paramter);
+            if (k > 0)
+                return true;
+            else
+                return false;
+        }
+    }
+}

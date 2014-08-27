@@ -22,7 +22,7 @@ namespace BlogParkTestPro.Model
         /// 创建人ID
         /// </summary>
         [DataMember]
-        public int CreaterID { get; set; }
+        public int? CreaterID { get; set; }
         /// <summary>
         /// 创建人昵称
         /// </summary>
@@ -37,7 +37,7 @@ namespace BlogParkTestPro.Model
         /// 用户自定义分类ID
         /// </summary>
         [DataMember]
-        public int UserCategoryID { get; set; }
+        public int? UserCategoryID { get; set; }
         /// <summary>
         /// 博文内容
         /// </summary>

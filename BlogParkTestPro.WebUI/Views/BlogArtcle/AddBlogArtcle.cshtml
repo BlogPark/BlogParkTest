@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "AddBlogArtcle";
+}
+@model BlogParkTestPro.Model.BlogArticles
+<h2>AddBlogArtcle</h2>
+<div style="width:1024px;height:auto">
+
+
+    <form method="post">
+        文章标题：<input type="text" id="title" name="title" />@Html.ValidationMessageFor(m => m.Title)<br />
+        文章标签：<input type="text" id="ArticleTags" name="ArticleTags" />@Html.ValidationMessageFor(m => m.ArticleTags)<br />
+        <label style="color:red">多标签时请用逗号分隔</label><br />
+        文章内容:
+        <script id="BlogContent" name="BlogContent" type="text/plain">
+        </script>
+        <script type="text/javascript" src="~/ueditor1_4_3-utf8-net/ueditor.config.js"></script>
+        <script type="text/javascript" src="~/ueditor1_4_3-utf8-net/ueditor.all.js"></script>
+        <script type="text/javascript">
+            var ue = UE.getEditor('BlogContent');
+        </script>
+        <input type="submit" value="保  存" />
+    </form>
+</div>

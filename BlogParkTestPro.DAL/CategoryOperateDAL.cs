@@ -32,5 +32,15 @@ namespace BlogParkTestPro.DAL
             paramter[0].Value = fatherid;
             return help.Query(sqltxt, paramter).Tables[0];
         }
+        public DataTable GetEssayCategoryListByUser(int userid)
+        {
+            string sqltxt = @"SELECT ID,
+       EssayCategoryName
+ FROM BlogPark.dbo.EssayCategory WITH(NOLOCK)
+ WHERE memberid=@memberid AND IsUsed=1";
+            SqlParameter[] paramter = { new SqlParameter("@memberid",SqlDbType.Int) };
+            paramter[0].Value = userid;
+            return help.Query(sqltxt,paramter).Tables[0];
+        }
     }
 }

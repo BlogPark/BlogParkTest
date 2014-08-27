@@ -1,15 +1,15 @@
 ﻿@{
     ViewBag.Title = "AddBlogArtcle";
 }
+@using BlogParkTestPro.Model
 @model BlogParkTestPro.Model.BlogArticles
 <h2>AddBlogArtcle</h2>
 <div style="width:1024px;height:auto">
-
-
     <form method="post">
         文章标题：<input type="text" id="title" name="title" />@Html.ValidationMessageFor(m => m.Title)<br />
         文章标签：<input type="text" id="ArticleTags" name="ArticleTags" />@Html.ValidationMessageFor(m => m.ArticleTags)<br />
         <label style="color:red">多标签时请用逗号分隔</label><br />
+        所属分类：@Html.DropDownList("listClass", ViewData.Model as IEnumerable<SelectListItem>)
         文章内容:
         <script id="BlogContent" name="BlogContent" type="text/plain">
         </script>

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogArticles.cs" />
+    <Compile Include="EssayCategory.cs" />
     <Compile Include="LogCategory.cs" />
     <Compile Include="MemberInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

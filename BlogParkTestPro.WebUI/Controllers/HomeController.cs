@@ -71,7 +71,7 @@ namespace BlogParkTestPro.WebUI.Controllers
                 aCookie.Expires = DateTime.Now.AddHours(1);
                 HttpCookie bCookie = new HttpCookie("loginuser");
                 bCookie.Value = HttpUtility.UrlEncode( ischeck.Nickname.ToString());
-                bCookie.Expires = DateTime.Now.AddMinutes(1);
+                bCookie.Expires = DateTime.Now.AddHours(1);
                 Response.Cookies.Add(aCookie);
                 Response.Cookies.Add(bCookie);
                 return RedirectToAction("Index");

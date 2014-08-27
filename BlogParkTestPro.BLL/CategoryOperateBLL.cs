@@ -38,5 +38,23 @@ namespace BlogParkTestPro.BLL
             }
             return model;
         }
+        public List<EssayCategory> GetEssayCategoryByMemberid(int userid)
+        {
+            DataTable ecategorytable = dal.GetEssayCategoryListByUser(userid);
+            List<EssayCategory> model=new List<EssayCategory>();
+            if (ecategorytable.Rows.Count == 0)
+                return null;               
+            else
+            {
+                foreach (DataRow item in ecategorytable.Rows)
+                {
+                    EssayCategory mo = new EssayCategory();
+                    mo.ID = int.Parse(item["ID"].ToString());
+                    mo.EssayCategoryName = item["EssayCategoryName"].ToString();
+                    model.Add(mo);
+                }
+                return model; 
+            }
+        }
     }
 }

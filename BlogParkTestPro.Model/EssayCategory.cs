@@ -12,7 +12,7 @@ namespace BlogParkTestPro.Model
         /// ID
         /// </summary>
         [DataMember]
-        public int ID { get; set; }
+        public int? ID { get; set; }
         /// <summary>
         /// 分类名称
         /// </summary>
@@ -22,12 +22,12 @@ namespace BlogParkTestPro.Model
         /// 会员ID
         /// </summary>
         [DataMember]
-        public int MemberID { get; set; }
+        public int? MemberID { get; set; }
         /// <summary>
         /// 是否在用
         /// </summary>
         [DataMember]
-        public int IsUsed { get; set; }
+        public int? IsUsed { get; set; }
 
     }
 }

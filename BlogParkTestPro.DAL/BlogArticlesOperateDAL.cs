@@ -68,5 +68,49 @@ VALUES  ( @Title,
             else
                 return false;
         }
+        /// <summary>
+        /// 分页查询博文
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public DataTable GetBlogArticleByPage(BlogArticles model)
+        {
+            string sqltxt = @"SELECT  IDENTITY( INT,1,1 ) AS rowid ,
+        ID = ID * 1
+INTO    #t
+FROM    BlogPark.dbo.BlogArticles A WITH ( NOLOCK )
+WHERE Statenum=10  ";
+            if (model.LogCategotyFatherID.HasValue)
+            {
+                sqltxt += @" AND LogCategotyFatherID=@LogCategotyFatherID ";
+            }
+            if (model.LogCategorySubID.HasValue)
+            {
+                sqltxt += @" AND LogCategorySubID=@LogCategorySubID  ";
+            }
+            string sql = @"DECLARE @total INT =@@ROWCOUNT
+SELECT  @total AS totalcount,
+        B.ID,
+        B.Title ,
+        B.BlogContent ,
+        B.CreaterName ,
+        B.CreateTime
+FROM    #t A
+        INNER JOIN BlogPark.dbo.BlogArticles B WITH ( NOLOCK ) ON A.id = B.id
+                                                              AND A.rowid > ( @pagesize
+                                                              * ( @pageindex
+                                                              - 1 ) )
+                                                              AND A.rowid < ( @pagesize
+                                                              * @pageindex )+1";
+            SqlParameter[] paramter = { new SqlParameter("@LogCategotyFatherID",SqlDbType.Int),
+                          new SqlParameter("@LogCategorySubID",SqlDbType.Int),
+                          new SqlParameter("@pagesize",SqlDbType.Int),
+                          new SqlParameter("@pageindex",SqlDbType.Int)};
+            paramter[0].Value = model.LogCategotyFatherID;
+            paramter[1].Value = model.LogCategorySubID;
+            paramter[2].Value = model.PageSize;
+            paramter[3].Value = model.PageIndex;
+            return help.Query(sqltxt + sql, paramter).Tables[0];
+        }
     }
 }

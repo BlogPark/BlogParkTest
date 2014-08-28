@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcPager">
+      <HintPath>..\..\MvcPager.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -587,6 +590,7 @@
     <Content Include="ueditor1_4_3-utf8-net\third-party\video-js\font\vjs.ttf" />
     <Content Include="ueditor1_4_3-utf8-net\third-party\video-js\font\vjs.woff" />
     <Content Include="Views\BlogArtcle\AddBlogArtcle.cshtml" />
+    <Content Include="Views\BlogArtcle\BlogList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

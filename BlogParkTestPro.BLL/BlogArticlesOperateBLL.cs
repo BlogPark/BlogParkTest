@@ -16,5 +16,14 @@ namespace BlogParkTestPro.BLL
         {
             return dal.InsertBlogArticle(model);
         }
+        /// <summary>
+        /// 分页查询博文
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public DataTable GetBlogArticleByPage(BlogArticles model)
+        {
+            return dal.GetBlogArticleByPage(model);
+        }
     }
 }

@@ -9,15 +9,16 @@
         文章标题：<input type="text" id="title" name="title" />@Html.ValidationMessageFor(m => m.Title)<br />
         文章标签：<input type="text" id="ArticleTags" name="ArticleTags" />@Html.ValidationMessageFor(m => m.ArticleTags)<br />
         <label style="color:red">多标签时请用逗号分隔</label><br />
-        所属分类：@Html.DropDownList("listClass", ViewData.Model as IEnumerable<SelectListItem>)
-        文章内容:
-        <script id="BlogContent" name="BlogContent" type="text/plain">
-        </script>
-        <script type="text/javascript" src="~/ueditor1_4_3-utf8-net/ueditor.config.js"></script>
-        <script type="text/javascript" src="~/ueditor1_4_3-utf8-net/ueditor.all.js"></script>
-        <script type="text/javascript">
-            var ue = UE.getEditor('BlogContent');
-        </script>
-        <input type="submit" value="保  存" />
-    </form>
+        所属分类：@Html.DropDownList("UserCategoryID","-请选择-")<br />
+    <br />
+    文章内容:
+    <script id="BlogContent" name="BlogContent" type="text/plain">
+    </script>
+    <script type="text/javascript" src="~/ueditor1_4_3-utf8-net/ueditor.config.js"></script>
+    <script type="text/javascript" src="~/ueditor1_4_3-utf8-net/ueditor.all.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('BlogContent');
+    </script>
+    <input type="submit" value="保  存" />
+</form>
 </div>

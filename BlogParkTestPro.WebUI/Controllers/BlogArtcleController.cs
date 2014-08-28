@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data;
 using BlogParkTestPro.Model;
 using BlogParkTestPro.BLL;
+using Webdiyer.WebControls.Mvc;
 
 namespace BlogParkTestPro.WebUI.Controllers
 {
@@ -19,29 +20,37 @@ namespace BlogParkTestPro.WebUI.Controllers
             if (Request.Cookies["loginid"] != null)
             {
                 List<EssayCategory> ca = categorybll.GetEssayCategoryByMemberid(int.Parse(Request.Cookies["loginid"].Value.ToString()));
-                List<SelectListItem> listClass = new List<SelectListItem>();
-                foreach (EssayCategory item in ca)
-                {
-                    SelectListItem se = new SelectListItem();
-                    se.Text = item.EssayCategoryName;
-                    se.Value = item.ID.ToString();
-                    listClass.Add(se);
-                }
-                
-                ViewData.Model = new SelectList(listClass, "ID", "EssayCategoryName", "---请选择---");
+                ViewData["UserCategoryID"] = new SelectList(ca, "ID", "EssayCategoryName","-请选择-");
             }
-            return View(model);
+            return View();
         }
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddBlogArtcle(BlogArticles model)
         {
             if (Request.Cookies["loginid"] != null)
-            { model.CreaterID = int.Parse(Request.Cookies["loginid"].Value.ToString()); }
+            {
+                model.CreaterID = int.Parse(Request.Cookies["loginid"].Value.ToString());
+                List<EssayCategory> ca = categorybll.GetEssayCategoryByMemberid(int.Parse(Request.Cookies["loginid"].Value.ToString()));
+                ViewData["UserCategoryID"] = new SelectList(ca, "ID", "EssayCategoryName", "-请选择-");
+            }
             if (Request.Cookies["loginuser"] != null)
             { model.CreaterName = HttpUtility.UrlDecode(Request.Cookies["loginuser"].Value.ToString()); }
             bool issuccess = bll.InsertBlogArticle(model);
             return View(model);
+        }
+
+        public ActionResult BlogList(int id = 1)
+        {
+            BlogArticles model = new BlogArticles();
+            model.PageSize = 5;
+            model.PageIndex = id;
+            DataTable tbl = new DataTable("Articles");
+            tbl = bll.GetBlogArticleByPage(model);
+            int totalItems = (int)tbl.Rows[0]["totalcount"]; //要分页的总记录数
+            //PagedList构造函数
+            PagedList<DataRow> arts = new PagedList<DataRow>(tbl.Select(), id, 5, totalItems);
+            return View(arts);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogParkTestPro.BLL", "BlogParkTestPro.BLL\BlogParkTestPro.BLL.csproj", "{AE4BBA51-C818-4104-A406-16184E84746D}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogParkTestPro.WebUI", "BlogParkTestPro.WebUI\BlogParkTestPro.WebUI.csproj", "{A21F1D7A-41F9-4992-B3B5-FF86F3F9FEE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogParkTestPro.DAL", "BlogParkTestPro.DAL\BlogParkTestPro.DAL.csproj", "{5DD2B673-AE46-4178-A6CD-4BA22D35E24D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogParkTestPro.Common", "BlogParkTestPro.Common\BlogParkTestPro.Common.csproj", "{9C0BF2E7-1690-4ACF-8B1C-0F18D47C98B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5DD2B673-AE46-4178-A6CD-4BA22D35E24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DD2B673-AE46-4178-A6CD-4BA22D35E24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DD2B673-AE46-4178-A6CD-4BA22D35E24D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C0BF2E7-1690-4ACF-8B1C-0F18D47C98B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C0BF2E7-1690-4ACF-8B1C-0F18D47C98B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C0BF2E7-1690-4ACF-8B1C-0F18D47C98B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C0BF2E7-1690-4ACF-8B1C-0F18D47C98B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

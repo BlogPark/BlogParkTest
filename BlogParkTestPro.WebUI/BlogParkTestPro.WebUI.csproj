@@ -607,6 +607,10 @@
       <Project>{ae4bba51-c818-4104-a406-16184e84746d}</Project>
       <Name>BlogParkTestPro.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BlogParkTestPro.Common\BlogParkTestPro.Common.csproj">
+      <Project>{9c0bf2e7-1690-4acf-8b1c-0f18d47c98b2}</Project>
+      <Name>BlogParkTestPro.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlogParkTestPro.Model\BlogParkTestPro.Model.csproj">
       <Project>{2bfa40f0-87ea-46ac-af25-daa2271ad8f9}</Project>
       <Name>BlogParkTestPro.Model</Name>

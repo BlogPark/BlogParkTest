@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BlogParkTestPro.WebUI.Models;
 using BlogParkTestPro.Model;
 using BlogParkTestPro.BLL;
+using BlogParkTestPro.Common;
 
 namespace BlogParkTestPro.WebUI.Controllers
 {
@@ -31,6 +32,16 @@ namespace BlogParkTestPro.WebUI.Controllers
 
             return View();
         }
+        [AllowAnonymous]
+        public ActionResult GetValidateCode()
+        {
+            ValidateCode vCode = new ValidateCode();
+            string code = vCode.CreateValidateCode(5);
+            Session["ValidateCode"] = code;
+            byte[] bytes = vCode.CreateValidateGraphic(code);
+            return File(bytes, @"image/jpeg");
+        }
+        
         /// <summary>
         /// 登录
         /// </summary>
@@ -43,8 +54,14 @@ namespace BlogParkTestPro.WebUI.Controllers
             return View(model);
         }
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(UserModels model)
         {
+            if (model.Verification != Session["ValidateCode"].ToString())
+            {
+                ModelState.AddModelError("Verification", "验证码不正确");
+                return View(model);
+            }
             if (model.isnextautologin)
             {
                 HttpCookie aCookie = new HttpCookie("lastVisit");
@@ -59,28 +76,33 @@ namespace BlogParkTestPro.WebUI.Controllers
                 aCookie.Expires = DateTime.Now.AddDays(-1);
                 Response.Cookies.Add(aCookie);
             }
-            MemberInfo memberinfo = new MemberInfo();
-            memberinfo.MemberName = model.username;
-            memberinfo.LoginPassword = model.password;
-            MemberInfo ischeck = memberbll.CheckMemberCanLogin(memberinfo);
-            if (ischeck != null)
+            if (ModelState.IsValid)
             {
-                System.Web.HttpContext.Current.Session["loguser"] = ischeck;
-                HttpCookie aCookie = new HttpCookie("loginid");
-                aCookie.Value = ischeck.MemberID.ToString();
-                aCookie.Expires = DateTime.Now.AddHours(1);
-                HttpCookie bCookie = new HttpCookie("loginuser");
-                bCookie.Value = HttpUtility.UrlEncode( ischeck.Nickname.ToString());
-                bCookie.Expires = DateTime.Now.AddHours(1);
-                Response.Cookies.Add(aCookie);
-                Response.Cookies.Add(bCookie);
-                return RedirectToAction("Index");
+                MemberInfo memberinfo = new MemberInfo();
+                memberinfo.MemberName = model.username;
+                memberinfo.LoginPassword = model.password;
+                MemberInfo ischeck = memberbll.CheckMemberCanLogin(memberinfo);
+                if (ischeck != null)
+                {
+                    System.Web.HttpContext.Current.Session["loguser"] = ischeck;
+                    HttpCookie aCookie = new HttpCookie("loginid");
+                    aCookie.Value = ischeck.MemberID.ToString();
+                    aCookie.Expires = DateTime.Now.AddHours(1);
+                    HttpCookie bCookie = new HttpCookie("loginuser");
+                    bCookie.Value = HttpUtility.UrlEncode(ischeck.Nickname.ToString());
+                    bCookie.Expires = DateTime.Now.AddHours(1);
+                    Response.Cookies.Add(aCookie);
+                    Response.Cookies.Add(bCookie);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    model.password = "";
+                    return View(model);
+                }
             }
             else
-            {
-                model.password = "";
                 return View(model);
-            }
         }
         /// <summary>
         /// 注册页

@@ -52,5 +52,10 @@ namespace BlogParkTestPro.WebUI.Controllers
             PagedList<DataRow> arts = new PagedList<DataRow>(tbl.Select(), id, 5, totalItems);
             return View(arts);
         }
+        public ActionResult GetBlogInfo(int id)
+        {
+
+            return View();
+        }
     }
 }

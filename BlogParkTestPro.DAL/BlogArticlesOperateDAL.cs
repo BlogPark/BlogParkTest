@@ -112,5 +112,12 @@ FROM    #t A
             paramter[3].Value = model.PageIndex;
             return help.Query(sqltxt + sql, paramter).Tables[0];
         }
+
+        public DataTable GetBlogArticInfoByid(int id)
+        {
+            string sqltxt = "";
+
+            return help.Query(sqltxt).Tables[0];
+        }
     }
 }

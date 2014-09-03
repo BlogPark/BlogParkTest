@@ -32,7 +32,7 @@ namespace BlogParkTestPro.WebUI.Controllers
 
             return View();
         }
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult GetValidateCode()
         {
             ValidateCode vCode = new ValidateCode();
@@ -41,7 +41,7 @@ namespace BlogParkTestPro.WebUI.Controllers
             byte[] bytes = vCode.CreateValidateGraphic(code);
             return File(bytes, @"image/jpeg");
         }
-        
+
         /// <summary>
         /// 登录
         /// </summary>
@@ -93,6 +93,7 @@ namespace BlogParkTestPro.WebUI.Controllers
                     bCookie.Expires = DateTime.Now.AddHours(1);
                     Response.Cookies.Add(aCookie);
                     Response.Cookies.Add(bCookie);
+                    ischeck = (MemberInfo)Session["loguser"];
                     return RedirectToAction("Index");
                 }
                 else

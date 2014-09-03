@@ -5,6 +5,7 @@ using System.Data;
 using System.Runtime.Serialization;
 namespace BlogParkTestPro.Model
 {
+    [Serializable]
     [DataContract]
     public class MemberInfo
     {

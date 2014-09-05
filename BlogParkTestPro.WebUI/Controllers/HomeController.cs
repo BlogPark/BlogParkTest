@@ -184,6 +184,28 @@ namespace BlogParkTestPro.WebUI.Controllers
                 ViewBag.message = "上传的文件是空文件！";
             }
             return View("Index");
-        }       
+        }
+
+        public ActionResult Upload(HttpPostedFileBase Filedata)
+        {
+            // 如果没有上传文件
+            if (Filedata == null ||
+                string.IsNullOrEmpty(Filedata.FileName) ||
+                Filedata.ContentLength == 0)
+            {
+                return this.HttpNotFound();
+            }
+
+            // 保存到 ~/photos 文件夹中，名称不变
+            string filename = System.IO.Path.GetFileName(Filedata.FileName);
+            string virtualPath =
+                string.Format("~/Upload/{0}", filename);
+            // 文件系统不能使用虚拟路径
+            string path = this.Server.MapPath(virtualPath);
+
+            Filedata.SaveAs(path);
+            ViewBag.message =virtualPath; 
+            return this.Json(new { });
+        }
     }
 }

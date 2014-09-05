@@ -119,6 +119,7 @@ namespace BlogParkTestPro.WebUI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult RegistrationPage(UserModels model)
         {
             if (ModelState.IsValid)
@@ -143,5 +144,46 @@ namespace BlogParkTestPro.WebUI.Controllers
         {
             Redirect("/Home/Login");
         }
+        /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UploadImg()
+        {
+            HttpFileCollectionBase files = Request.Files;
+            HttpPostedFileBase file = files["file1"];
+            if (file != null && file.ContentLength > 0)
+            {
+                string fileName = file.FileName;
+                //判断文件名字是否包含路径名，如果有则提取文件名
+                if (fileName.LastIndexOf("\\") > -1)
+                {
+                    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
+                }
+                //判断文件格式，这里要求是JPG格式
+                if (fileName.LastIndexOf('.') > -1)//&& fileName.Substring(fileName.LastIndexOf('.')).ToUpper() == ".JPG"))
+                {
+                    string path = Server.MapPath("~/Upload/");
+                    try
+                    {
+                        file.SaveAs(path + fileName);
+                        ViewBag.message = "/Upload/" + fileName; 
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
+                else
+                {
+                    ViewBag.message = "上传的文件格式不符合要求！";
+                }
+            }
+            else
+            {
+                ViewBag.message = "上传的文件是空文件！";
+            }
+            return View("Index");
+        }       
     }
 }

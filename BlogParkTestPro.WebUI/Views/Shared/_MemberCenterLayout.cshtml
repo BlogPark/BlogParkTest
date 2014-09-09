@@ -16,52 +16,67 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">@Html.ActionLink("将你的徽标放置在此处 人参归脾", "Index", "Home")</p>
+    <div id="cons" style=" line-height: 22px; margin-left: 3px; margin-right: 8px; padding-right: 0;">
+        <div style=" margin: auto;    padding: 0 8px;">
+            <div style=" color: #666; float: left;">代码改变世界</div>
+            <div style="color: #5b5b5b;font-size: 12px;height: 22px;line-height: 22px;overflow: hidden;text-align: right;">
                 @if (Request.Cookies["loginuser"] != null)
                 {
-                    @HttpUtility.UrlDecode(Request.Cookies["loginuser"].Value)
+                    <a href=""> @HttpUtility.UrlDecode(Request.Cookies["loginuser"].Value)</a>@Html.ActionLink("退出", "Singout", "Home");
+                }
+                else
+                {
+                    @Html.ActionLink("登录", "Login", "Home");@Html.ActionLink("注册", "RegistrationPage", "Home");
                 }
             </div>
-            <div class="float-right">               
-                <nav>
-                    <ul id="menu">
-                        <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                        <li>@Html.ActionLink("关于", "About", "Home")</li>
-                        <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                        <li>
-                            @if (Request.Cookies["loginuser"] != null)
-                            {
-                                @HttpUtility.UrlDecode(Request.Cookies["loginuser"].Value)
-                            }
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
-</header>
-<div id="body">
-    <div style="float:left; width:200px">
-        <section id="login">
-            @Html.Action("GetSubCategoryList", "Category", new { id = 100 })
+    <div id="header" style="margin-left:10px;margin-right:10px;">
+        <p class="h_r_3" style=" border-bottom: 1px solid #d8dfea;font-size: 0;height: 0;line-height: 0;margin: 0 1px;"></p>
+        <p class="h_r_2" style="border-left: 2px solid #d8dfea;border-right: 1px solid #d8dfea;font-size: 0;height: 1px;line-height: 0;margin: 0 1px;"></p>
+        <p class="h_r_1" style="border-left: 2px solid #d8dfea;border-right: 1px solid #d8dfea;font-size: 0; height: 1px;line-height: 0;"></p>
+        <div id="header_block" style=" border-left: 1px solid #d8dfea;border-right: 1px solid #d8dfea;height: 65px;">
+            <div id="logo" style="left: 18px; position: absolute; ">
+                <h1>
+                    <a title="开发者的网上家园" href="#" style="outline:0 none;">
+                        <img width="142px" height="55px" alt="博客园Logo" style=" border: 0 none;" src="~/Images/logo_small.gif" />
+                    </a>
+                </h1>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <p class="h_r_1" style="border-left: 2px solid #d8dfea;border-right: 1px solid #d8dfea;font-size: 0; height: 1px;line-height: 0;"></p>
+        <p class="h_r_2" style="border-left: 2px solid #d8dfea;border-right: 1px solid #d8dfea;font-size: 0;height: 1px;line-height: 0;margin: 0 1px;"></p>
+        <p class="h_r_3" style=" border-bottom: 1px solid #d8dfea;font-size: 0;height: 0;line-height: 0;margin: 0 1px;"></p>
+    </div>
+    <div id="nav_menu"  style="height: 30px; line-height: 30px; margin: 8px 7px 0 10px; padding: 0;">
+        asdasfsfsd
+    </div>
+    <div id="main" style=" margin: 10px 320px 0 180px; padding: 0;">
+        <div style=" background-color: #eef; left: 10px; margin-top: 0; padding-top: 0; position: absolute; top: 142px; width: 160px;">
+            网页左侧
+            <section id="">
+                @Html.Action("CategoryList", "Category")
+            </section>
+        </div>
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
         </section>
-    </div>
-    @RenderSection("featured", required: false)
-    <section class="content-wrapper main-content clear-fix">
-        @RenderBody()
-    </section>
-</div>
-<footer>
-    <div class="content-wrapper">
-        <div class="float-left">
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET MVC 应用程序</p>
+        <div style=" background-color: #eef;position: absolute;right: 7px;top: 174px;width: 300px;">
+            网页右侧
         </div>
     </div>
-</footer>
-
-@Scripts.Render("~/bundles/jquery")
-@RenderSection("scripts", required: false)
+    <div id="footer_bottom" style=" margin: 0 auto;text-align: center;">
+        <a href="">关于博客园</a>
+        <a href="">联系我们</a>
+        <a href="">广告服务</a>
+        <a target="_blank" href="">沪ICP备09004260号</a>
+        ©2004-2014
+        <a href="">博客园</a>
+        保留所有权利
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

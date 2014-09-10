@@ -19,13 +19,13 @@ namespace BlogParkTestPro.WebUI.Controllers
         }
         public ActionResult CategoryList()
         {
-            List<LogCategory> models = bll.GetMinCategory();
+            List<LogCategory> models = bll.GetAllCategory();
             return PartialView("_CategoryList", models);
         }
         public ActionResult GetSubCategoryList(int id)
         {
             List<LogCategory> models = bll.GetSubCategory(id);
-            return PartialView("_CategoryList", models);
+            return PartialView("_CategoryList",models);
         }
         public ActionResult GetEssayCategoryListByUser(int userid)
         {

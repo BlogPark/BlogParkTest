@@ -1,17 +1,39 @@
-﻿@using BlogParkTestPro.Model;
-@model List<BlogParkTestPro.Model.LogCategory>
-@{
-    Layout = null;
-}
-<dl>
-    @if (Model != null)
-    {
-        foreach (var item in Model)
+﻿@using BlogParkTestPro.Model
+@model List<LogCategory>
+<div class="clearfix" style="height:100px;">
+    <ul id="menu" class="ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" tabindex="0" aria-activedescendant="ui-id-22">
+        @foreach (LogCategory item in Model)
         {
-            string idstr = "idMenu2_" + item.CategoryID.ToString();
-            <dd id="@idstr"><a href="#">@item.CategoryName</a></dd>
+            if (item.FatherID == -1)
+            {
+                var query = from p in Model
+                            where p.FatherID == item.CategoryID
+                            select p;
+                if (query.Count()>0)
+                {
+                    <li class="ui-menu-item" role="presentation">
+                        <a class="ui-corner-all" href="#" aria-haspopup="true" tabindex="-1" role="menuitem">
+                            <span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span>
+                        @item.CategoryName</a>
+                        <ul class="ui-menu ui-widget ui-widget-content ui-corner-all" style="display: none; top: 9812.5px; left: 212px;" role="menu" aria-expanded="false" aria-hidden="true">
+                            @foreach (var ite in query)
+                            {
+                                <li class="ui-menu-item" role="presentation"><a class="ui-corner-all" href="#" tabindex="-1" role="menuitem">@ite.CategoryName</a></li>
+                            }
+                        </ul>
+
+                    </li>
+                }
+                else 
+                {
+                    <li class="ui-menu-item" role="presentation">
+                        <a class="ui-corner-all" href="#" tabindex="-1" role="menuitem">@item.CategoryName</a>
+                    </li>
+                }
+            }
         }
-    }
-</dl>
-
-
+    </ul>
+</div>
+<script type="text/javascript">
+    $("#menu").menu();
+</script>

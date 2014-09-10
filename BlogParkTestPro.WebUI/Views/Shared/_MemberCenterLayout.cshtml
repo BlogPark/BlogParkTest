@@ -4,6 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.custom.min.js"></script>
+    <link href="~/CSS/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="~/CSS/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/CJL.0.1.min.js"></script>
     <script src="~/Scripts/FixedMenu.js"></script>
     <script src="~/Scripts/RelativePosition.js"></script>
@@ -53,17 +56,18 @@
         asdasfsfsd
     </div>
     <div id="main" style=" margin: 10px 320px 0 180px; padding: 0;">
-        <div style=" background-color: #eef; left: 10px; margin-top: 0; padding-top: 0; position: absolute; top: 142px; width: 160px;">
-            网页左侧
-            <section id="">
+        <div style=" background-color: #eef; left: 10px; margin-top: 0; padding-top: 0; position: absolute; top: 142px; float:left;width:150px;">
+            <section id="block-menu">
                 @Html.Action("CategoryList", "Category")
             </section>
         </div>
-        @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
-            @RenderBody()
-        </section>
-        <div style=" background-color: #eef;position: absolute;right: 7px;top: 174px;width: 300px;">
+        <div style="margin:0px;">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <div style=" background-color: #eef;position: absolute;right: 7px;top: 174px;width: 300px;float:right;">
             网页右侧
         </div>
     </div>

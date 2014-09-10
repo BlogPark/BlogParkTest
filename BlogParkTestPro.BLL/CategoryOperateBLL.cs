@@ -12,6 +12,25 @@ namespace BlogParkTestPro.BLL
     public class CategoryOperateBLL
     {
         CategoryOperateDAL dal = new CategoryOperateDAL();
+        /// <summary>
+        /// 得到所有分类
+        /// </summary>
+        /// <returns></returns>
+        public List<LogCategory> GetAllCategory()
+        {
+            DataTable categorytable = dal.GetAllCategory();
+            List<LogCategory> model = new List<LogCategory>();
+            foreach (DataRow item in categorytable.Rows)
+            {
+                LogCategory mo = new LogCategory();
+                mo.CategoryID = int.Parse(item["CategoryID"].ToString());
+                mo.CategoryName = item["CategoryName"].ToString();
+                mo.FatherID = int.Parse(item["FatherID"].ToString());
+                model.Add(mo);
+            }
+            return model;
+        }
+
         public List<LogCategory> GetMinCategory()
         {
             DataTable categorytable = dal.GetMainCategory();

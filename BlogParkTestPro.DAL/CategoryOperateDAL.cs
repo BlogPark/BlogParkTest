@@ -12,6 +12,15 @@ namespace BlogParkTestPro.DAL
     {
         DbHelperSQL help = new DbHelperSQL();
         /// <summary>
+        /// 得到所有分类
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetAllCategory()
+        {
+            string sqltxt = @"SELECT CategoryID,CategoryName,FatherID  FROM dbo.LogCategory WITH(NOLOCK)";
+            return help.Query(sqltxt).Tables[0];
+        }
+        /// <summary>
         /// 得到主分类
         /// </summary>
         /// <returns></returns>

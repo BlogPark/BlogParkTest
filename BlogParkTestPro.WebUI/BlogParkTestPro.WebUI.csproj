@@ -284,6 +284,7 @@
     <Content Include="SQL\EssayCategory.sql" />
     <Content Include="SQL\LogCategory.sql" />
     <Content Include="SQL\Member.sql" />
+    <Content Include="SQL\WebPageInformation.sql" />
     <Content Include="ueditor1_4_3-utf8-net\dialogs\anchor\anchor.html" />
     <Content Include="ueditor1_4_3-utf8-net\dialogs\attachment\attachment.css" />
     <Content Include="ueditor1_4_3-utf8-net\dialogs\attachment\attachment.html" />

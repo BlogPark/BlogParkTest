@@ -8,48 +8,65 @@
 <div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
         @{
-    int k = 0;
-    foreach (DataRow item in Model.TabMenutable.Rows)
-    {
-        string tabname = "tab_" + item["MenuID"].ToString();
-        string display="ul-li-"+ item["MenuID"].ToString();
-        if (k == 0)
-        {
-            <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="@tabname" aria-labelledby="@display" aria-selected="true">
-                <a id="@display" class="ui-tabs-anchor" href="#@tabname" role="presentation" tabindex="-1">@item["MenuName"].ToString()</a>
-            </li>
-            k++;
+            int k = 0;
+            foreach (DataRow item in Model.TabMenutable.Rows)
+            {
+                string tabname = "tab_" + item["MenuID"].ToString();
+                string display = "ul-li-" + item["MenuID"].ToString();
+                if (k == 0)
+                {
+                    <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="@tabname" aria-labelledby="@display" aria-selected="true">
+                        <a id="@display" class="ui-tabs-anchor" href="#@tabname" role="presentation" tabindex="-1">@item["MenuName"].ToString()</a>
+                    </li>
+                    k++;
+                }
+                else
+                {
+                    <li class="ui-state-default ui-corner-top " role="tab" tabindex="-1" aria-controls="@tabname" aria-labelledby="@display" aria-selected="false">
+                        <a id="@display" class="ui-tabs-anchor" href="/BlogArtcle/PartialBlogView?pageindex=3" role="presentation" tabindex="-1">@item["MenuName"].ToString()</a>
+                    </li>
+                }
+            }
         }
-        else
-        {
-            <li class="ui-state-default ui-corner-top " role="tab" tabindex="-1" aria-controls="@tabname" aria-labelledby="@display" aria-selected="false">
-                <a id="@display" class="ui-tabs-anchor" href="#@tabname" role="presentation" tabindex="-1">@item["MenuName"].ToString()</a>
-            </li>
-        }
-    }
-}
     </ul>
     @{
-    int m = 0;
-    foreach (DataRow item in Model.TabMenutable.Rows)
-    {
-        string tabname = "tab_" + item["MenuID"].ToString();
-        string display = "ul-li-" + item["MenuID"].ToString();
-        if (m == 0)
-        {
-            <div id="@tabname" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="@display" role="tabpanel" aria-expanded="true" aria-hidden="false">
-                <p>@tabname.ToString()</p>
-            </div>
-        }
-        else
-        {
-            <div id="@tabname" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="@display" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
-                <p>@tabname.ToString()</p>
-            </div>
-        }
+        string tabnames = "tab_" + Model.TabMenutable.Rows[0]["MenuID"].ToString();
+        string displays = "ul-li-" + Model.TabMenutable.Rows[0]["MenuID"].ToString();
+        <div id="@tabnames" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="@displays" role="tabpanel" aria-expanded="true" aria-hidden="false">
+            <section id="block-menu">
+                @Html.Action("PartialBlogView", "BlogArtcle", new { pageindex = 1, pagesize = 10 });
+            </section>
+        </div>
     }
-}
+    @*@{
+            int m = 0;
+            foreach (DataRow item in Model.TabMenutable.Rows)
+            {
+                string tabname = "tab_" + item["MenuID"].ToString();
+                string display = "ul-li-" + item["MenuID"].ToString();
+                if (m == 0)
+                {
+                    <div id="@tabname" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="@display" role="tabpanel" aria-expanded="true" aria-hidden="false">
+                        <p>@tabname.ToString()</p>
+                    </div>
+                }
+                else
+                {
+                    <div id="@tabname" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="@display" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                        <p>@tabname.ToString()</p>
+                    </div>
+                }
+            }
+        }*@
 </div>
 <script type="text/javascript">
-    $("#tabs").tabs();
+    $("#tabs").tabs({
+        ajaxOptions: {
+            error: function (xhr, status, index, anchor) {
+                $(anchor.hash).html(
+                 "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+                 "If this wouldn't be a demo.");
+            }
+        }
+    });
 </script>

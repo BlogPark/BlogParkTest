@@ -52,9 +52,20 @@ namespace BlogParkTestPro.WebUI.Controllers
             PagedList<DataRow> arts = new PagedList<DataRow>(tbl.Select(), id, 5, totalItems);
             return View(arts);
         }
+        public ActionResult PartialBlogView(int pageindex = 1, int pagesize = 10)
+        {
+            BlogArticles model = new BlogArticles();
+            model.PageSize =pagesize;
+            model.PageIndex = pageindex;
+            DataTable tbl = new DataTable("Articles");
+            tbl = bll.GetBlogArticleByPage(model);
+            int totalItems = (int)tbl.Rows[0]["totalcount"]; //要分页的总记录数
+            //PagedList构造函数
+            PagedList<DataRow> arts = new PagedList<DataRow>(tbl.Select(), pageindex, pagesize, totalItems);
+            return PartialView("_BlogArtclePartialView", arts);
+        }
         public ActionResult GetBlogInfo(int id)
         {
-
             return View();
         }
     }

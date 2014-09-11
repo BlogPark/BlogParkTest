@@ -1,0 +1,18 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@model PagedList<System.Data.DataRow>
+<div id="dvLink">
+    <table width="100%">
+        <tr>
+            <th>标题</th>
+            <th>发布日期</th>
+            <th>作者</th>
+            <th>编号</th>
+        </tr>
+        @foreach (var dr in Model)
+        {
+            <tr><td>@dr["Title"]</td><td>@dr["CreateTime"]</td><td>@dr["CreaterName"]</td><td>@dr["ID"]</td></tr>
+        }
+    </table>
+    @Html.AjaxPager(Model, new PagerOptions { PageIndexParameterName = "pageindex", ShowPageIndexBox = true, PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false, PageIndexBoxWrapperFormatString = " 转到{0}", SeparatorHtml = "" }, new AjaxOptions() { UpdateTargetId = "dvLink" })
+    <br />
+</div>

@@ -13,10 +13,14 @@ namespace BlogParkTestPro.WebUI.Controllers
     public class HomeController : Controller
     {
         MemberSimpleOperationBLL memberbll = new MemberSimpleOperationBLL();
+        MenusOperateBLL menubll = new MenusOperateBLL();
         public ActionResult Index()
         {
             ViewBag.Message = "";
-            return View();
+            IndexViewModel model = new IndexViewModel();
+            model.TopMenutable = menubll.GetMenuListByPagePosition(1, (int)WebPositionEnum.TopMenuBar);
+            model.TabMenutable = menubll.GetMenuListByPagePosition(1, (int)WebPositionEnum.TabList);
+            return View(model);
         }
 
         public ActionResult About()
@@ -206,6 +210,12 @@ namespace BlogParkTestPro.WebUI.Controllers
             Filedata.SaveAs(path);
             ViewBag.message =virtualPath; 
             return this.Json(new { });
+        }
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            var name = HttpContext.User.Identity.Name;
+            base.OnActionExecuted(filterContext);
+            ViewBag.Relationship = menubll.GetMenuListByPagePosition(1, (int)WebPositionEnum.TopMenuBar);
         }
     }
 }

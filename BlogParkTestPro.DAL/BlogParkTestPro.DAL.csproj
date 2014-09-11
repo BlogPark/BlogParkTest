@@ -45,6 +45,7 @@
     <Compile Include="CategoryOperateDAL.cs" />
     <Compile Include="DbHelperSQL.cs" />
     <Compile Include="MemberSimpleOperation.cs" />
+    <Compile Include="MenusOperateDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLConstant.cs" />
   </ItemGroup>

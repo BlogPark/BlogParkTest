@@ -42,6 +42,7 @@
     <Compile Include="BlogArticlesOperateBLL.cs" />
     <Compile Include="CategoryOperateBLL.cs" />
     <Compile Include="MemberSimpleOperationBLL.cs" />
+    <Compile Include="MenusOperateBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

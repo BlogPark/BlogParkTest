@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Data;
+<!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -52,11 +53,20 @@
         <p class="h_r_2" style="border-left: 2px solid #d8dfea;border-right: 1px solid #d8dfea;font-size: 0;height: 1px;line-height: 0;margin: 0 1px;"></p>
         <p class="h_r_3" style=" border-bottom: 1px solid #d8dfea;font-size: 0;height: 0;line-height: 0;margin: 0 1px;"></p>
     </div>
-    <div id="nav_menu"  style="height: 30px; line-height: 30px; margin: 8px 7px 0 10px; padding: 0;">
-        asdasfsfsd
+    <div id="nav_menu"  style="height: 30px; line-height: 30px; margin: 8px 7px 0 10px; padding: 0; background: -moz-linear-gradient(center top, #2b6695, #0e4773) repeat scroll 0 0 #2b6695; box-shadow: -3px 1px 3px rgba(0, 0, 0, 0.25);">
+       @{
+           DataTable dt = (DataTable)ViewBag.Relationship;
+           if (dt.Rows.Count > 0)
+           {
+               foreach (DataRow item in dt.Rows)
+               {
+                   <a href="#" style="color: #eee; padding-left: 24px; font-size: 14px; text-decoration:none;" >@item["MenuName"].ToString()</a>
+               }
+           }
+       }
     </div>
     <div id="main" style=" margin: 10px 320px 0 180px; padding: 0;">
-        <div style=" background-color: #eef; left: 10px; margin-top: 0; padding-top: 0; position: absolute; top: 142px; float:left;width:150px;">
+        <div style=" background-color: #eef; left: 10px; margin-top: 0; padding-top: 0; position: absolute;  float:left;width:150px;">
             <section id="block-menu">
                 @Html.Action("CategoryList", "Category")
             </section>

@@ -8,6 +8,9 @@ using System.Data;
 
 namespace BlogParkTestPro.DAL
 {
+    /// <summary>
+    /// 博文类别操作类
+    /// </summary>
     public class CategoryOperateDAL
     {
         DbHelperSQL help = new DbHelperSQL();

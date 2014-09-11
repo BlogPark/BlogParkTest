@@ -9,6 +9,9 @@ using BlogParkTestPro.Model;
 
 namespace BlogParkTestPro.DAL
 {
+    /// <summary>
+    /// 系统博文操作类
+    /// </summary>
     public class BlogArticlesOperateDAL
     {
         DbHelperSQL help = new DbHelperSQL();

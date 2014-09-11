@@ -13,6 +13,6 @@
             <tr><td>@dr["Title"]</td><td>@dr["CreateTime"]</td><td>@dr["CreaterName"]</td><td>@dr["ID"]</td></tr>
         }
     </table>
-    @Html.AjaxPager(Model, new PagerOptions { PageIndexParameterName = "pageindex", ShowPageIndexBox = true, PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false, PageIndexBoxWrapperFormatString = " 转到{0}", SeparatorHtml = "" }, new AjaxOptions() { UpdateTargetId = "dvLink" })
+    @Html.AjaxPager(Model, new PagerOptions { PageIndexParameterName = "pageindex", ShowPageIndexBox = false, PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false, PageIndexBoxWrapperFormatString = " 转到{0}", SeparatorHtml = "" }, new AjaxOptions() { UpdateTargetId = "dvLink" })
     <br />
 </div>

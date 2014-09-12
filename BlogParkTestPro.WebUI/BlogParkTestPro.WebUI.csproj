@@ -282,9 +282,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\RelativePosition.js" />
     <Content Include="SQL\ADDBlogArticles09111718.sql" />
+    <Content Include="SQL\ADDBlogsComment09121628.sql" />
     <Content Include="SQL\AddMemberInfoField.sql" />
     <Content Include="SQL\ADDWebMenuOrder.sql" />
     <Content Include="SQL\BlogArticles.sql" />
+    <Content Include="SQL\BlogsComment09121605.sql" />
     <Content Include="SQL\EssayCategory.sql" />
     <Content Include="SQL\LogCategory.sql" />
     <Content Include="SQL\Member.sql" />

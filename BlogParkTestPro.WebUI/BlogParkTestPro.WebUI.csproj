@@ -288,8 +288,10 @@
     <Content Include="SQL\BlogArticles.sql" />
     <Content Include="SQL\BlogsComment09121605.sql" />
     <Content Include="SQL\EssayCategory.sql" />
+    <Content Include="SQL\FriendlyLink09121705.sql" />
     <Content Include="SQL\LogCategory.sql" />
     <Content Include="SQL\Member.sql" />
+    <Content Include="SQL\ParkNews09121647.sql" />
     <Content Include="SQL\WebMenuOrder.sql" />
     <Content Include="SQL\WebPageInformation.sql" />
     <Content Include="SQL\WebPosition.sql" />

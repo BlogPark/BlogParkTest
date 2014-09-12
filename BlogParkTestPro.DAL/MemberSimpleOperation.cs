@@ -87,5 +87,25 @@ VALUES  (
                 issuccessful = false;
             return issuccessful;
         }
+        /// <summary>
+        /// 根据博文数降序排列会员名（前100名）
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetMemberUserOrderByBlongCount()
+        {
+            string sqltxt = @"SELECT  ROW_NUMBER() OVER( ORDER BY B.con DESC ) AS rowID, 
+        A.MemberID , 
+        A.MemberName ,
+        B.con,
+        A.Nickname
+FROM    dbo.MemberInfo A WITH ( NOLOCK )
+        INNER JOIN ( SELECT COUNT(0) con ,
+                            CreaterID
+                     FROM   dbo.BlogArticles WITH ( NOLOCK )
+                     GROUP BY CreaterID
+                   ) B ON A.MemberID = b.CreaterID
+ORDER BY B.con DESC";
+            return help.Query(sqltxt).Tables[0];
+        }
     }
 }

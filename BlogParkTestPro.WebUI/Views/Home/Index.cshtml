@@ -34,7 +34,7 @@
         string displays = "ul-li-" + Model.TabMenutable.Rows[0]["MenuID"].ToString();
         <div id="@tabnames" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="@displays" role="tabpanel" aria-expanded="true" aria-hidden="false">
             <section id="block-menu">
-                @Html.Action("PartialBlogView", "BlogArtcle", new { pageindex = 1, pagesize = 10 });
+                @Html.Action("PartialBlogView", "BlogArtcle", new { pageindex = 1, pagesize = 10 })
             </section>
         </div>
     }

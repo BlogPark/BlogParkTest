@@ -1,13 +1,15 @@
 ﻿@using BlogParkTestPro.Model
-@model List<LogCategory>
+@using BlogParkTestPro.WebUI.Models
+@using System.Data;
+@model  RightMenuViewModel
 <div style="background-color: #eef;left: 10px; margin-top: 0; padding-top: 0;position: absolute; width: 150px;">
     <div class="clearfix" style="position:relative;">
         <ul id="menu" class="ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" tabindex="0" aria-activedescendant="ui-id-22">
-            @foreach (LogCategory item in Model)
+            @foreach (LogCategory item in Model.CategoryList)
             {
                 if (item.FatherID == -1)
                 {
-                    var query = from p in Model
+                    var query = from p in Model.CategoryList
                                 where p.FatherID == item.CategoryID
                                 select p;
                     if (query.Count() > 0)
@@ -36,7 +38,23 @@
             }
         </ul>
     </div>
-</div>
-<script type="text/javascript">
-    $("#menu").menu();
-</script>
+    <div style="border-left: 0px solid #ccc; border-right: 1px solid #ccc; color: #404040; margin-top: 0; padding: 0;">
+        <h4>推荐博客排行</h4>
+        @{
+            <div style="  color: gray;
+    line-height: 2em;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 2px;">
+                <ul style="border-left: 0px solid #ccc; border-right: 0px solid #ccc; color: #404040; margin-top: 0; padding: 0;">
+                    @foreach (DataRow item in Model.TopMemberUserTable.Rows)
+                    {
+                        <li style="list-style: none outside none;">@item["rowID"].ToString() <a href="#">@item["Nickname"].ToString()</a></li>
+                    }
+                </ul>
+            </div>}
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("#menu").menu();
+    </script>

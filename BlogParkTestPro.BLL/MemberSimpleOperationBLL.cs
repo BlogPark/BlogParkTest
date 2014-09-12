@@ -28,5 +28,13 @@ namespace BlogParkTestPro.BLL
         {
             return dal.InsertMemberUserforRegistration(model);
         }
+        /// <summary>
+        /// 根据博文数降序排列会员名（前100名）
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetMemberUserOrderByBlongCount()
+        {
+            return dal.GetMemberUserOrderByBlongCount();
+        }
     }
 }

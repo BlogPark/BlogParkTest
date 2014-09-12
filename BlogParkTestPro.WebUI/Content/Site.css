@@ -5,12 +5,17 @@ a {
     outline: none;
     padding-left: 3px;
     padding-right: 3px;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
     a:link, a:visited,
     a:active {
         color: #333;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: none;
+        color:red;
     }
 mark {
     background-color: #a6dbed;

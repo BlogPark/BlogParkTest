@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BlogParkTestPro.Model;
 using BlogParkTestPro.BLL;
+using BlogParkTestPro.WebUI.Models;
 
 namespace BlogParkTestPro.WebUI.Controllers
 {
@@ -13,14 +14,17 @@ namespace BlogParkTestPro.WebUI.Controllers
         //
         // GET: /Category/
         CategoryOperateBLL bll = new CategoryOperateBLL();
+        MemberSimpleOperationBLL memberbll = new MemberSimpleOperationBLL();
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult CategoryList()
         {
-            List<LogCategory> models = bll.GetAllCategory();
-            return PartialView("_CategoryList", models);
+            RightMenuViewModel model = new RightMenuViewModel();
+            model.CategoryList = bll.GetAllCategory();//读取类别
+            model.TopMemberUserTable = memberbll.GetMemberUserOrderByBlongCount();//读取排行
+            return PartialView("_CategoryList", model);
         }
         public ActionResult GetSubCategoryList(int id)
         {

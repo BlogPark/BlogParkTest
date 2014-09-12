@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicsDataReaderBLL.cs" />
     <Compile Include="BlogArticlesOperateBLL.cs" />
     <Compile Include="CategoryOperateBLL.cs" />
     <Compile Include="MemberSimpleOperationBLL.cs" />

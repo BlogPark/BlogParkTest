@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BasicsController.cs" />
     <Compile Include="Controllers\BlogArtcleController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -623,11 +624,11 @@
     <Content Include="uploadify\index.php" />
     <Content Include="uploadify\uploadify.php" />
     <Content Include="Views\Shared\_BlogArtclePartialView.cshtml" />
+    <Content Include="Views\Shared\_FriendFooterView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
-    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

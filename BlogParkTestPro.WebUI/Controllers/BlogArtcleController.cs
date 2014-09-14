@@ -64,9 +64,15 @@ namespace BlogParkTestPro.WebUI.Controllers
             PagedList<DataRow> arts = new PagedList<DataRow>(tbl.Select(), pageindex, pagesize, totalItems);
             return PartialView("_BlogArtclePartialView", arts);
         }
-        public ActionResult GetBlogInfo(int id)
+        /// <summary>
+        /// 博客明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Blogs(int id)
         {
-            return View();
+            DataTable blogtable = bll.GetBlogArticInfoByid(id);
+            return View(blogtable);
         }
     }
 }

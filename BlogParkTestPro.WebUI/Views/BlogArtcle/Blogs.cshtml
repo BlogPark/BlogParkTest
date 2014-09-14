@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "Blogs";
+}
+@using System.Data;
+@model DataTable 
+<h1>@Model.Rows[0]["Title"].ToString()</h1>

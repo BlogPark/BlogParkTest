@@ -115,11 +115,36 @@ FROM    #t A
             paramter[3].Value = model.PageIndex;
             return help.Query(sqltxt + sql, paramter).Tables[0];
         }
-
+        /// <summary>
+        /// 得到博问明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public DataTable GetBlogArticInfoByid(int id)
         {
-            string sqltxt = "";
-
+            string sqltxt = @"SELECT  ID ,
+        Title ,
+        CreaterID ,
+        CreaterName ,
+        ArticleTags ,
+        UserCategoryID ,
+        BlogContent ,
+        CreateTime ,
+        BrowseCount ,
+        ReviewCount ,
+        RecommendCount ,
+        OppositionCount ,
+        Statenum ,
+        LastUpdateTime ,
+        LogCategotyFatherID ,
+        LogCategorySubID ,
+        ISEssence ,
+        ISEditorRecommends ,
+        ISCandidate
+FROM    BlogPark.dbo.BlogArticles A WITH(NOLOCK)
+WHERE A.id=@id";
+            SqlParameter[] paramter = { new SqlParameter("@id", SqlDbType.Int) };
+            paramter[0].Value = id;
             return help.Query(sqltxt).Tables[0];
         }
     }

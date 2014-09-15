@@ -69,7 +69,7 @@ FROM    #t A
                                       new SqlParameter("@pageindex",SqlDbType.Int)};
             paramter[0].Value = pagesize;
             paramter[1].Value = pageindex;
-            return helper.Query(sqltxt).Tables[0];
+            return helper.Query(sqltxt,paramter).Tables[0];
         }
     }
 }

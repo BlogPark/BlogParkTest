@@ -145,7 +145,7 @@ FROM    BlogPark.dbo.BlogArticles A WITH(NOLOCK)
 WHERE A.id=@id";
             SqlParameter[] paramter = { new SqlParameter("@id", SqlDbType.Int) };
             paramter[0].Value = id;
-            return help.Query(sqltxt).Tables[0];
+            return help.Query(sqltxt,paramter).Tables[0];
         }
     }
 }

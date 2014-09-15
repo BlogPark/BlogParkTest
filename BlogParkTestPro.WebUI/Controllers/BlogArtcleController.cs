@@ -69,10 +69,20 @@ namespace BlogParkTestPro.WebUI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Blogs(int id)
+        public ActionResult Blogs(string blogid)
         {
-            DataTable blogtable = bll.GetBlogArticInfoByid(id);
+            int ids = 1;
+            if (!int.TryParse(blogid, out ids))
+                return RedirectToAction("Index", "Home");
+            DataTable blogtable = bll.GetBlogArticInfoByid(ids);
             return View(blogtable);
         }
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            var name = HttpContext.User.Identity.Name;
+            base.OnActionExecuted(filterContext);
+            ViewBag.Relationship = menubll.GetMenuListByPagePosition(1, (int)WebPositionEnum.TopMenuBar);
+        }
+        MenusOperateBLL menubll = new MenusOperateBLL();
     }
 }

@@ -10,7 +10,8 @@
         </tr>
         @foreach (var dr in Model)
         {
-            <tr><td>@dr["Title"]</td><td>@dr["CreateTime"]</td><td>@dr["CreaterName"]</td><td>@dr["ID"]</td></tr>
+            <tr>
+        <td>@Html.ActionLink(dr["Title"].ToString(), "Blogs", "BlogArtcle", new { blogid = dr["ID"].ToString() }, new { target = "_blank" })</td><td>@dr["CreateTime"]</td><td>@dr["CreaterName"]</td><td>@Html.ActionLink(dr["ID"].ToString(), "Blogs", "BlogArtcle", new { blogid = dr["ID"].ToString() })</td></tr>
         }
     </table>
     @Html.AjaxPager(Model, new PagerOptions { PageIndexParameterName = "pageindex", ShowPageIndexBox = false, PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false, PageIndexBoxWrapperFormatString = " 转到{0}", SeparatorHtml = "" }, new AjaxOptions() { UpdateTargetId = "dvLink" })

@@ -40,7 +40,7 @@ ORDER BY ReleaseTime DESC";
         /// 分页得到新闻列表
         /// </summary>
         /// <returns></returns>
-        public DataTable GetNewsList(int pageindex,int pagesize)
+        public DataTable GetNewsList(int pageindex, int pagesize)
         {
             string sqltxt = @"SELECT  IDENTITY( INT,1,1 ) AS rowid ,
         NewsID=NewsID*1
@@ -69,7 +69,22 @@ FROM    #t A
                                       new SqlParameter("@pageindex",SqlDbType.Int)};
             paramter[0].Value = pagesize;
             paramter[1].Value = pageindex;
-            return helper.Query(sqltxt,paramter).Tables[0];
+            return helper.Query(sqltxt, paramter).Tables[0];
+        }
+        /// <summary>
+        /// 得到所有的友情链接
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetAllFriendLink()
+        {
+            string sqltxt = @"SELECT  ID ,
+        LinkText ,
+        LinkAddress ,
+        LinkImg ,
+        ClickCount ,
+        ISEnable
+FROM    BlogPark.dbo.FriendlyLink WITH ( NOLOCK )";
+            return helper.Query(sqltxt).Tables[0];
         }
     }
 }

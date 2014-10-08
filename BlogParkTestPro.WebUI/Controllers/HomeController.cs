@@ -14,6 +14,7 @@ namespace BlogParkTestPro.WebUI.Controllers
     {
         MemberSimpleOperationBLL memberbll = new MemberSimpleOperationBLL();
         MenusOperateBLL menubll = new MenusOperateBLL();
+
         public ActionResult Index()
         {
             ViewBag.Message = "";

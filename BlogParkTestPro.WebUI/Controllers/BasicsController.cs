@@ -15,13 +15,15 @@ namespace BlogParkTestPro.WebUI.Controllers
     /// </summary>
     public class BasicsController : Controller
     {
+        BasicsDataReaderBLL basicebll = new BasicsDataReaderBLL();
         /// <summary>
         /// 得到友情链接
         /// </summary>
         /// <returns></returns>
         public ActionResult ShowFriendLink()
         {
-            return PartialView("");
+            DataTable frindlink = basicebll.GetAllFriendLink();
+            return PartialView("_friendLink",frindlink);
         }
     }
 }

@@ -4,3 +4,6 @@
 @using System.Data;
 @model DataTable 
 <h1>@Model.Rows[0]["Title"].ToString()</h1>
+<div>
+@Html.Raw(@Model.Rows[0]["BlogContent"])
+</div>

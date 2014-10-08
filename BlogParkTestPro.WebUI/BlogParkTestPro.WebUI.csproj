@@ -626,6 +626,7 @@
     <Content Include="Views\Shared\_BlogArtclePartialView.cshtml" />
     <Content Include="Views\Shared\_FriendFooterView.cshtml" />
     <Content Include="Views\BlogArtcle\Blogs.cshtml" />
+    <Content Include="Views\Shared\_friendLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

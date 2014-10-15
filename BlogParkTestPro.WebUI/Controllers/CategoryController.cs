@@ -24,6 +24,7 @@ namespace BlogParkTestPro.WebUI.Controllers
             RightMenuViewModel model = new RightMenuViewModel();
             model.CategoryList = bll.GetAllCategory();//读取类别
             model.TopMemberUserTable = memberbll.GetMemberUserOrderByBlongCount();//读取排行
+            model.RecommendUserTable = memberbll.GetMaxBlogsMembers();
             return PartialView("_CategoryList", model);
         }
         public ActionResult GetSubCategoryList(int id)

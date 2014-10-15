@@ -93,7 +93,7 @@ VALUES  (
         /// <returns></returns>
         public DataTable GetMemberUserOrderByBlongCount()
         {
-            string sqltxt = @"SELECT  ROW_NUMBER() OVER( ORDER BY B.con DESC ) AS rowID, 
+            string sqltxt = @"SELECT top 5 ROW_NUMBER() OVER( ORDER BY B.con DESC ) AS rowID, 
         A.MemberID , 
         A.MemberName ,
         B.con,
@@ -105,6 +105,22 @@ FROM    dbo.MemberInfo A WITH ( NOLOCK )
                      GROUP BY CreaterID
                    ) B ON A.MemberID = b.CreaterID
 ORDER BY B.con DESC";
+            return help.Query(sqltxt).Tables[0];
+        }
+        /// <summary>
+        /// 得到最新推荐的会员
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetMaxBlogsMembers()
+        {
+            string sqltxt = @"SELECT m.MemberID,m.Nickname
+FROM BlogPark.dbo.MemberInfo m WITH(NOLOCK)
+INNER JOIN (
+SELECT TOP 5 [CreaterID]
+FROM    [BlogPark].[dbo].[BlogArticles]
+WHERE ISEditorRecommends=1
+ORDER BY CreateTime DESC )
+B ON m.MemberID=b.CreaterID";
             return help.Query(sqltxt).Tables[0];
         }
     }

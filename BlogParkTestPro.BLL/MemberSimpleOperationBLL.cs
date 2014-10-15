@@ -36,5 +36,13 @@ namespace BlogParkTestPro.BLL
         {
             return dal.GetMemberUserOrderByBlongCount();
         }
+        /// <summary>
+        /// 得到最新推荐的会员
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetMaxBlogsMembers()
+        {
+            return dal.GetMaxBlogsMembers();
+        }
     }
 }

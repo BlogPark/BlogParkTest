@@ -17,5 +17,9 @@ namespace BlogParkTestPro.WebUI.Models
         /// 博客排行
         /// </summary>
         public DataTable TopMemberUserTable { get; set; }
+        /// <summary>
+        /// 推荐排行
+        /// </summary>
+        public DataTable RecommendUserTable { get; set; }
     }
 }
